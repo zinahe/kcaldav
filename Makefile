@@ -9,7 +9,7 @@ include Makefile.configure
 
 # Database directory in CGI process's file-system root.
 # Should be read-write-exec for database consumers.
-CALDIR		 = /caldav
+CALDIR		 = /var/www/caldav
 
 # File-system directory of CALDIR.
 CALPREFIX	 = /var/www/caldav
@@ -30,7 +30,7 @@ CGIPREFIX	 = /var/www/cgi-bin
 # This must be writable by the server process and relative to the
 # chroot(2), if applicable.
 LOGPREFIX    = /var/www/logs
-LOGFILE		 = $(LOGPREFIX)/kcaldav-system.log
+LOGFILE      = $(LOGPREFIX)/kcaldav-system.log
 
 # Set -D DEBUG=1 to produce debugging information in LOGFILE.
 # Set -D DEBUG=2 for even more debugging information.
@@ -166,7 +166,6 @@ installcgi: all
 	mkdir -p $(DESTDIR)$(HTDOCSPREFIX)
 	mkdir -p $(DESTDIR)$(CALPREFIX)
 	mkdir -p $(DESTDIR)$(LOGPREFIX)
-	touch $(LOGFILE)
 	$(INSTALL_PROGRAM) kcaldav $(DESTDIR)$(CGIPREFIX)
 	$(INSTALL_DATA) $(JSMINS) $(BHTMLS) style.css $(DESTDIR)$(HTDOCSPREFIX)
 	
