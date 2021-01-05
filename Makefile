@@ -29,7 +29,8 @@ CGIPREFIX	 = /var/www/cgi-bin
 # Where do we put the system log?
 # This must be writable by the server process and relative to the
 # chroot(2), if applicable.
-LOGFILE		 = /logs/kcaldav-system.log
+LOGPREFIX    = /var/www/logs
+LOGFILE		 = $(LOGPREFIX)/kcaldav-system.log
 
 # Set -D DEBUG=1 to produce debugging information in LOGFILE.
 # Set -D DEBUG=2 for even more debugging information.
@@ -164,6 +165,8 @@ installcgi: all
 	mkdir -p $(DESTDIR)$(CGIPREFIX)
 	mkdir -p $(DESTDIR)$(HTDOCSPREFIX)
 	mkdir -p $(DESTDIR)$(CALPREFIX)
+	mkdir -p $(DESTDIR)$(LOGPREFIX)
+	touch $(LOGFILE)
 	$(INSTALL_PROGRAM) kcaldav $(DESTDIR)$(CGIPREFIX)
 	$(INSTALL_DATA) $(JSMINS) $(BHTMLS) style.css $(DESTDIR)$(HTDOCSPREFIX)
 	
